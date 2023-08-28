@@ -1,25 +1,13 @@
-<html>
-    <body>
-        <script>
-  /*
-            function getComputerChoice() {
-                let randomNum = Math.random();
-                if (randomNum >= 0 && randomNum < 0.33) {
-                    return 'Rock';
-                } else if (randomNum >= 0.33 && randomNum < 0.66) {
-                    return 'Paper';
-                } else {
-                    return 'Scissors';
-                }
-            }
-*/
-
-/* Use Math.random() function to get the random number between(0-1, 1 exclusive).
-Multiply it by the array length to get the numbers between(0-arrayLength).
-Use Math.floor() to get the index ranging from(0 to arrayLength-1). */
-
-
-            function getComputerChoice() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
                 let choices = ['rock', 'paper', 'scissors'];
                 let computerChoice = choices.at(Math.floor(Math.random() * choices.length));
                 return computerChoice;
@@ -72,9 +60,9 @@ Use Math.floor() to get the index ranging from(0 to arrayLength-1). */
             }    
             
             function final() {
-                if (playerScore >= 3) {
+                if (playerScore > compScore) {
                     alert(`The final score is ${playerScore} to you, ${compScore} to the computer. You win the game!`)
-                } else if (compScore >= 3) {
+                } else if (compScore > playerScore) {
                     alert(`The final score is ${playerScore} to you, ${compScore} to the computer. The computer wins the game!`)
                 } else if (playerScore === compScore) {
                     alert(`The final score is ${playerScore} to you, ${compScore} to the computer. It's a draw!`)
@@ -88,3 +76,6 @@ Use Math.floor() to get the index ranging from(0 to arrayLength-1). */
             game();
             game(); 
             final();
+    </script>
+</body>
+</html>

@@ -6,7 +6,17 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Rock, paper, scissors!</h1>
+    <p>Time to play: The game consts of 5 rounds. Who will win? Let's play!</p>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <p>Your current score: </p>
+    <p>Computers current score:</p>
+    <p>Result</p>
     <script>
+
+
         function getComputerChoice() {
                 let choices = ['rock', 'paper', 'scissors'];
                 let computerChoice = choices.at(Math.floor(Math.random() * choices.length));
@@ -28,28 +38,19 @@
             let compScore = 0;
 
             function playRound(playerSelection, computerSelection) {
-                if (playerSelection === 'rock' && computerSelection === 'scissors') {
-                    playerScore++;
-                    alert(`Wow, you won! You have ${playerScore} points, and the computer has ${compScore} points.`);
-                } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-                    playerScore++;
-                    alert(`Wow, you won! You have ${playerScore} points, and the computer has ${compScore} points.`);
-                } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-                    playerScore++;
-                    alert(`Wow, you won! You have ${playerScore} points, and the computer has ${compScore} points.`);
+                if (
+                    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+                    (playerSelection === 'paper' && computerSelection === 'rock') ||
+                    (playerSelection === 'scissors' && computerSelection === 'paper')) {
+                        playerScore++;
+                        alert(`Wow, you won! You have ${playerScore} points, and the computer has ${compScore} points.`);
                 } else if (playerSelection === computerSelection) {
                     playerScore++;
                     compScore++;
                     alert(`It's a draw! You have ${playerScore} points, and the computer has ${compScore} points.`);
-                } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+                } else {
                     compScore++;
-                    alert(`You loose! You have ${playerScore} points, and the computer has ${compScore} points.`);
-                } else if (playerSelection === 'rock' && computerSelection === 'paper') {  
-                    compScore++;                  
-                    alert(`You loose! You have ${playerScore} points, and the computer has ${compScore} points.`);
-                } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-                    compScore++;
-                    alert(`You loose! You have ${playerScore} points, and the computer has ${compScore} points.`);
+                    alert(`You lost! You have ${playerScore} points, and the computer has ${compScore} points.`);
                 }
             }
 
@@ -69,13 +70,31 @@
                 }
             }
 
+            const rockButton = document.getElementById('rock')
+            const paperButton = document.getElementById('paper')
+            const scissorsButton = document.getElementsById('scissors')
+
+            rockButton.addEventListener('click', function() {
+                playRound('rock', computerSelection())
+            })
+             
+            paperButton.addEventListener('click', function() {
+                playRound('paper', computerSelection())
+            })
+            
+            scissorsButton.addEventListener('click', function() {
+                playRound('scissors', computerSelection())
+            })
+/*
             alert("Let's play a game of rock, paper, scissors. Best out of 5...let's go!");
             game();
             game();
             game();
             game();
             game(); 
-            final();
+            final(); */
     </script>
 </body>
 </html>
+
+

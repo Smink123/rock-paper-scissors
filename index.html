@@ -4,48 +4,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Rock, Paper, Scissors Game</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <h1>Rock, paper, scissors!</h1>
-  <p>Time to play: The game consts of 5 rounds. Who will win? Let's play!</p>
-  <button id = "startGame">Let's play!</button>
-  <div id = 'game'>
+  <p>Time to play: The game consists of 5 rounds. Who will win? Let's play!</p>
+  <button id="startGame">Let's play!</button>
+  <div id="game" style="display: none;">
+    <p id="roundNumber">Round 1</p>
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
     <div id="result_panel">
-      <p id="roundNumber"></p>
       <p id="roundResult"></p>
-    <div id="score">
-      <p id="myScore"></p>
-      <p id="compScore"></p>
+      <div id="score">
+        <p id="myScore"></p>
+        <p id="compScore"></p>
+      </div>
+      <div id="final_results">
+        <p id="game-over">Game over!</p>
+        <p id="winner"></p>
+      </div>
     </div>
-    <div id="final_results">
-      <p id="winner"></p>
-    </div>
-  </div>
+    <button id="rematch">Rematch?</button>
   </div>
   <script>
-    const startButton = document.getElementById('startGame')
-    const gameVisuals = document.getElementById('game')
+    const startButton = document.getElementById('startGame');
+    const gameVisuals = document.getElementById('game');
     const userScore = document.getElementById('myScore');
     const computerScore = document.getElementById('compScore');
     const roundResults = document.getElementById('roundResult');
     const theWinner = document.getElementById('winner');
-
+    const newGame = document.getElementById('rematch');
+    const gameOver = document.getElementById('game-over');
+    const rockButton = document.getElementById('rock');
+    const paperButton = document.getElementById('paper');
+    const scissorsButton = document.getElementById('scissors');
+    const roundNumber = document.getElementById('roundNumber');
     startButton.addEventListener('click', function() {
-        gameVisuals.style.display = "block";
-        startButton.style.display = "none";
-    })
+      gameVisuals.style.display = "block";
+      startButton.style.display = "none";
+    });
 
     function getComputerChoice() {
       let choices = ['rock', 'paper', 'scissors'];
       let computerChoice = choices[Math.floor(Math.random() * choices.length)];
       return computerChoice;
     }
+
     let playerScore = 0;
     let compScore = 0;
     let currentRound = 1;
@@ -54,27 +62,25 @@
       if (
         (playerSelection === 'rock' && computerSelection === 'scissors') ||
         (playerSelection === 'paper' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper')) {
+        (playerSelection === 'scissors' && computerSelection === 'paper')
+      ) {
         playerScore++;
-        userScore.textContent = `You have ${playerScore} points`
-        computerScore.textContent = `the computer has ${compScore} points.`
-        roundResults.textContent = `Wow, you won!`
+        userScore.textContent = `You have ${playerScore} points`;
+        computerScore.textContent = `the computer has ${compScore} points.`;
+        roundResults.textContent = `Wow, you won!`;
       } else if (playerSelection === computerSelection) {
         playerScore++;
         compScore++;
-        userScore.textContent = `You have ${playerScore} points`
-        computerScore.textContent = `the computer has ${compScore} points.`
-        roundResults.textContent = `It's a draw!`
+        userScore.textContent = `You have ${playerScore} points`;
+        computerScore.textContent = `the computer has ${compScore} points.`;
+        roundResults.textContent = `It's a draw!`;
       } else {
         compScore++;
-        userScore.textContent = `You have ${playerScore} points`
-        computerScore.textContent = `the computer has ${compScore} points.`
-        roundResults.textContent = `Oh no, you lost!`
+        userScore.textContent = `You have ${playerScore} points`;
+        computerScore.textContent = `the computer has ${compScore} points.`;
+        roundResults.textContent = `Oh no, you lost!`;
       }
     }
-    const rockButton = document.getElementById('rock');
-    const paperButton = document.getElementById('paper');
-    const scissorsButton = document.getElementById('scissors');
 
     rockButton.addEventListener('click', function() {
       allRounds('rock');
@@ -88,28 +94,46 @@
 
     function final() {
       if (playerScore > compScore) {
-        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`
-        theWinner.textContent = `You win the game!`
+        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`;
+        theWinner.textContent = `You win the game!`;
       } else if (compScore > playerScore) {
-        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`
-        theWinner.textContent = `The computer wins the game!`
+        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`;
+        theWinner.textContent = `The computer wins the game!`;
       } else if (playerScore === compScore) {
-        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`
-        theWinner.textContent = `It's a draw!`
+        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`;
+        theWinner.textContent = `It's a draw!`;
       }
     }
 
     function allRounds(playerSelection) {
-      if (currentRound < 6) {
-        roundNumber.textContent = `Round ${currentRound}`;
+      if (currentRound <= 4) {
         currentRound++;
+        roundNumber.textContent = `Round ${currentRound}`;
         playRound(playerSelection, getComputerChoice());
-      } else {
+      } else if (currentRound === 5) {
+        playRound(playerSelection, getComputerChoice());
+        roundNumber.style.display = 'none'
+        gameOver.style.display = 'block';
         final();
+        newGame.style.display = 'block';
       }
     }
+    
+    newGame.addEventListener('click', function() {
+      playerScore = 0;
+      compScore = 0;
+      currentRound = 1;
+      newGame.style.display = 'none';
+      roundNumber.textContent = 'Round 1';
+      userScore.textContent = '';
+      computerScore.textContent = '';
+      roundResults.textContent = '';
+      theWinner.textContent = '';
+      gameVisuals.style.display = "block";
+      roundNumber.style.display = 'block'
+      gameOver.style.display = 'none';
+    });
   </script>
 </body>
 
 </html>
-

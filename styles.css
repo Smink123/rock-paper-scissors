@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    background-color: #ebddce;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Add this line */
+}
+
+#gameSpace {
+    background-color: #f7473e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+}
+
+#game {
+    display: none;
+}
+
+#rematch {
+    display: none;
+}
+
+#game-over {
+    display: none;
+}

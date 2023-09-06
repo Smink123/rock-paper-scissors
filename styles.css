@@ -1,10 +1,180 @@
+#game {
+    display: none;
+}
+
+#rematch {
+    display: none;
+}
+
+#game-over {
+    display: none;
+}
+
+#introPage p {
+    font-family: 'Work Sans', sans-serif;
+    color: black;
+    font-size: 2rem;
+}
+
+body {
+    display: flex;
+    background-color: #ebddceff;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+#introPage {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Unbounded', sans-serif;
+    margin: 0;
+    font-size: 13rem;
+}
+
+#buttonContainer,
+.gameplayContainer {
+    flex: 1;
+}
+
+#buttonContainer {
+    background-color: #ebddceff;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end; /* Start buttons from the left edge */
+    justify-content: space-evenly; /* Center align buttons vertically */
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    padding-right: 40px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Style for buttons */
+.buttonContainer img {
+    width: 900px;
+    height: auto;
+}
+
+
+#paperButton:hover {
+    transform: rotate(2deg);
+    animation: wiggle 0.3s ease infinite;
+}
+
+#rockButton:hover {
+    transform: rotate(2deg);
+    animation: wiggle 0.3s ease infinite;
+}
+
+#scissorsButton:hover {
+    transform: rotate(2deg);
+    animation: wiggle 0.3s ease infinite;
+}
+
+#paperButton:active {
+    transform: scale(1.1, 1.1);
+    animation: grow 1s ease-in-out infinite;
+}
+
+#rockButton:active {
+    transform: scale(1.1, 1.1);
+    animation: grow 1s ease-in-out infinite;
+}
+
+#scissorsButton:active {
+    transform: scale(1.1, 1.1);
+    animation: grow 1s ease-in-out infinite;
+}
+
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(2deg);
+    }
+    50% {
+        transform: rotate(-2deg);
+    }
+    100% {
+        transform: rotate(2deg);
+    }
+}
+
+
+@media (min-width: 2000px) {
+    .buttonContainer img {
+        width: 100%;
+    }
+}
+
+.gameplayContainer {
+    background-color: #ffff;
+    height: 100vh;
+}
+
+.no-hover-animation {
+    animation: none !important;
+}
+
+.no-hover-animation:hover {
+    transform: none !important; /* Reset the transform on hover */
+    animation: none !important; /* Disable animation on hover */
+}
+
+.no-hover-animation:active {
+    transform: none !important; /* Reset the transform on active */
+    animation: none !important; /* Disable animation on active */
+}
+
+
+
+
+
+
+/*
 body {
     display: flex;
     background-color: #ebddce;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
-    height: 100vh; /* Add this line */
+    height: 100vh;
+    width: 100%;
+    margin: 0;
 }
+
+.buttonContainer {
+    flex: 1; /* Updated property 
+    background-color: firebrick;
+}
+
+.gameplayContainer {
+    flex: 1; /* Updated property 
+    background-color: aqua;
+}
+
+.buttons {
+    width: 50vw;
+}
+
+
+
+
+
+
+
+
 
 #gameSpace {
     background-color: #f7473e;
@@ -15,8 +185,46 @@ body {
     text-align: center;
     width: 650px;
     height: 650px;
+    min-height: 650px;
+    min-height: 650px;
     border-radius: 50%;
+}*/
+
+/*
+h1 {
+    width: 100vw;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    font-size: 8rem;
+    font-family: 'Comfortaa', cursive;
+    margin: 0;
+}*/
+
+/*
+#buttonContainers {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content:space-around;
+    width: 800px;
+    height: auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #game {
     display: none;
@@ -28,4 +236,9 @@ body {
 
 #game-over {
     display: none;
+}
+
+P {
+    font-family: 'Comfortaa', cursive;
+    color: white;
 }

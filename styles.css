@@ -13,12 +13,6 @@
 #game-over {
     display: none;
 }
-/*
-#introPage p {
-    font-family: 'Work Sans', sans-serif;
-    color: black;
-    font-size: 2rem;
-}*/
 
 body {
     display: flex;
@@ -29,7 +23,7 @@ body {
     margin: 0;
 }
 
-#introPage {
+#introPage, .gameplayContainer {
     margin: 0;
     height: 100%;
     width: 100%;
@@ -47,6 +41,7 @@ body {
     cursor: pointer; /* Optional: Add pointer cursor for usability */
     outline: none;   /* Optional: Remove the focus outline */
     text-decoration: none;
+    transform: scale(1.5);
 }
 
 .gameRules {
@@ -56,19 +51,21 @@ body {
   }
   
   .popup-text {
+    color: black;
     display: none;
+    font-family: 'Courier New', Courier, monospace;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f9f9f9;
-    border-radius: 5px;
     z-index: 1;
-    padding: 20px;
+    padding: 40px 40px 80px 40px;
     width: auto;
-    height: auto;
+    height:auto;
     text-align: justify;
-  }
+    background:
+    conic-gradient(from -45deg at bottom,transparent,white 1deg 89deg,transparent 90deg) 50%/80px 100% repeat;
+}
   
   .gameRules:hover .popup-text {
     display: block;
@@ -76,6 +73,7 @@ body {
 
 #header {
     margin: 0 auto;
+    position: relative;
 }
 
 #row1 {
@@ -100,6 +98,18 @@ h1, #startGame, .gameRules {
     color: #4a73f0;
     font-size: 13rem;
 }
+  .squiggle1 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: scale(1.5);
+  }
+
+  .squiggle2 {
+    position: absolute;
+    left: 0;
+    bottom: 320px;
+  }
 
 #buttonContainer,
 .gameplayContainer {
@@ -160,110 +170,4 @@ h1, #startGame, .gameRules {
 .gameplayContainer {
     background-color: #ffff;
     height: 100vh;
-}
-
-
-
-
-
-
-/*
-body {
-    display: flex;
-    background-color: #ebddce;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-}
-
-.buttonContainer {
-    flex: 1; /* Updated property 
-    background-color: firebrick;
-}
-
-.gameplayContainer {
-    flex: 1; /* Updated property 
-    background-color: aqua;
-}
-
-.buttons {
-    width: 50vw;
-}
-
-
-
-
-
-
-
-
-
-#gameSpace {
-    background-color: #f7473e;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 650px;
-    height: 650px;
-    min-height: 650px;
-    min-height: 650px;
-    border-radius: 50%;
-}*/
-
-/*
-h1 {
-    width: 100vw;
-    height: auto;
-    position: absolute;
-    top: 0px;
-    text-align: center;
-    font-size: 8rem;
-    font-family: 'Comfortaa', cursive;
-    margin: 0;
-}*/
-
-/*
-#buttonContainers {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content:space-around;
-    width: 800px;
-    height: auto;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#game {
-    display: none;
-}
-
-#rematch {
-    display: none;
-}
-
-#game-over {
-    display: none;
-}
-
-P {
-    font-family: 'Comfortaa', cursive;
-    color: white;
 }

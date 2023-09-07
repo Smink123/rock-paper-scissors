@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 #game {
     display: none;
 }
@@ -9,12 +13,12 @@
 #game-over {
     display: none;
 }
-
+/*
 #introPage p {
     font-family: 'Work Sans', sans-serif;
     color: black;
     font-size: 2rem;
-}
+}*/
 
 body {
     display: flex;
@@ -36,19 +40,61 @@ body {
     justify-content: center;
 }
 
+#startGame {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer; /* Optional: Add pointer cursor for usability */
+    outline: none;   /* Optional: Remove the focus outline */
+    text-decoration: none;
+}
+
+.gameRules {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .popup-text {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    z-index: 1;
+    padding: 20px;
+    width: auto;
+    height: auto;
+    text-align: justify;
+  }
+  
+  .gameRules:hover .popup-text {
+    display: block;
+  }  
+
 #header {
     margin: 0 auto;
 }
 
-#header h1:nth-child(1) {
-    text-align: right;
+#row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#header h1:nth-child(2) {
-    text-align: left;
+.popup-text {
+    font-size: 1rem;
 }
 
-h1 {
+#row2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h1, #startGame, .gameRules {
     font-family: 'Unbounded', sans-serif;
     margin: 0;
     color: #4a73f0;

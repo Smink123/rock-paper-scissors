@@ -21,11 +21,18 @@
   <div class="gameplayContainer">
     <div id="introPage">
       <div id="header">
-        <h1>ROCK</h1>
-        <h1>PAPER</h1>
+        <div id="row1">
+          <div class="gameRules">?
+            <div class="popup-text">Your goal is to beat the computer in five rounds. Choose Rock, Paper, or Scissors, and the computer will make its choice. Rock beats Scissors, Scissors beats Paper, and Paper beats Rock. If both sides choose the same, it's a draw.<br><br>You earn a point for a win, and draws award a point to each player. The computer gains a point when you lose.<br><br>To win the game, have more points than the computer after five rounds. If points are equal, it's a tie. After each game, you can start fresh with scores reset.<br><br>Enjoy Rock, Paper, Scissors!</div>
+          </div>
+          <h1>ROCK</h1>
+        </div>
+        <div id="row2">
+          <h1>PAPER</h1>
+          <button id="startGame">→</button>
+        </div>
         <h1>SCISSORS</h1>
       </div>
-      <button id="startGame">Let's play!</button>
     </div>
       <div id="game" style="display: none;">
         <p id = 'compRound'></p>

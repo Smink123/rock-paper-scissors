@@ -14,27 +14,30 @@
 </head>
 <body>
   <div id="buttonContainer">
-      <img id="paperButton" src="paper hand.png" class="no-hover-animation">
-      <img id="scissorsButton" src="scissors hand.png" class="no-hover-animation">
-      <img id="rockButton" src="rock hand.png" class="no-hover-animation">
+      <img id="paperButton" src="paper hand.png">
+      <img id="scissorsButton" src="scissors hand.png">
+      <img id="rockButton" src="rock hand.png">
   </div>
   <div class="gameplayContainer">
     <div id="introPage">
-      <h1>ROCK<br>PAPER<br> SCISSORS</h1>
-      <p>Time to play: The game consists of 5 rounds. Who will win? Let's play!</p>
+      <div id="header">
+        <h1>ROCK</h1>
+        <h1>PAPER</h1>
+        <h1>SCISSORS</h1>
+      </div>
       <button id="startGame">Let's play!</button>
     </div>
       <div id="game" style="display: none;">
+        <p id = 'compRound'></p>
+        <p id="roundResult"></p>
         <p id="roundNumber">Round 1</p>
+        <p id="weapon">Choose your weapon:</p>
         <div id="result_panel">
-          <p id="roundResult"></p>
           <div id="score">
-            <p id="myScore"></p>
-            <p id="compScore"></p>
-          </div>
-          <div id="final_results">
-            <p id="game-over">Game over!</p>
+            <p id="myScore">You have 0 points</p>
+            <p id="compScore">The computer has 0 points</p>
             <p id="winner"></p>
+            <p id="game-over">Game over!</p>
           </div>
         </div>
         <button id="rematch">Rematch?</button>
@@ -55,6 +58,8 @@
     const scissorsButton = document.getElementById('scissorsButton');
     const roundNumber = document.getElementById('roundNumber');
     const buttonPage = document.getElementById('buttonContainer');
+    const chooseWeapon = document.getElementById('weapon')
+    const compRound = document.getElementById('compRound')
     
 
     startButton.addEventListener('click', function() {
@@ -113,43 +118,50 @@
     });
     //the outcome text for who wins a game. This function is added to the next function
     function final() {
+      chooseWeapon.style.display = 'none'
+      buttonPage.style.display = 'none'
+      roundResults.style.display = 'none'
       if (playerScore > compScore) {
-        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`;
         theWinner.textContent = `You win the game!`;
       } else if (compScore > playerScore) {
-        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`;
         theWinner.textContent = `The computer wins the game!`;
       } else if (playerScore === compScore) {
-        roundResults.textContent = `The final score is ${playerScore} to you, ${compScore} to the computer.`;
         theWinner.textContent = `It's a draw!`;
       }
     }
     //a function for 5 games of the playRound function
     function allRounds(playerSelection) {
-      if (currentRound <= 4) {
-        currentRound++;
-        roundNumber.textContent = `Round ${currentRound}`;
-        playRound(playerSelection, getComputerChoice());
-      } else if (currentRound === 5) { //once it reachs the 5th round...
-        playRound(playerSelection, getComputerChoice());
-        roundNumber.style.display = 'none'
-        rockButton.style.display = 'none'
-        paperButton.style.display = 'none'
-        scissorsButton.style.display = 'none'
-        gameOver.style.display = 'block';
-        final(); //...the  final function appears with the scores.
-        newGame.style.display = 'block';
-      }
-    }
+  if (currentRound <= 4) {
+    currentRound++;
+    roundNumber.textContent = `Round ${currentRound}`;
+    const computerSelection = getComputerChoice(); // Get the computer's choice
+    compRound.textContent = `Computer picks ${computerSelection}`; // Display the computer's choice
+    playRound(playerSelection, computerSelection); // Call playRound with both choices
+  } else if (currentRound === 5) { // Once it reaches the 5th round...
+    const computerSelection = getComputerChoice(); // Get the computer's choice
+    compRound.textContent = `Computer picks ${computerSelection}`; // Display the computer's choice
+    playRound(playerSelection, computerSelection); // Call playRound with both choices
+    roundNumber.style.display = 'none';
+    rockButton.style.display = 'none';
+    paperButton.style.display = 'none';
+    scissorsButton.style.display = 'none';
+    gameOver.style.display = 'block';
+    final(); //... the final function appears with the scores.
+    newGame.style.display = 'block';
+  }
+}
+
     //at the end there is an option for a new game. Everything is reset
     newGame.addEventListener('click', function() {
+      buttonPage.style.display = 'flex'
+      chooseWeapon.style.display = 'block'
       playerScore = 0;
       compScore = 0;
       currentRound = 1;
       newGame.style.display = 'none';
       roundNumber.textContent = 'Round 1';
-      userScore.textContent = '';
-      computerScore.textContent = '';
+      userScore.textContent = 'You have 0 points';
+      computerScore.textContent = 'The computer has 0 points';
       roundResults.textContent = '';
       theWinner.textContent = '';
       gameVisuals.style.display = "block";

@@ -177,8 +177,13 @@ h1, #startGame, .gameRules {
     background-color: #4a73f0;
     position: absolute;
     top: 0;
-    width: 50%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }
 
 

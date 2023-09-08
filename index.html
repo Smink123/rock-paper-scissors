@@ -38,9 +38,9 @@
   </div>
   <div id=gameplayContainer style="display: none;">
     <div id="buttonContainer">
+      <img id="rockButton" src="rock.png">
       <img id="paperButton" src="paper.png">
       <img id="scissorsButton" src="scissors.png">
-      <img id="rockButton" src="rock.png">
     </div>
     <div id="game">
       <div id="roundNum">
@@ -48,6 +48,7 @@
         <p id="weapon">Choose your weapon:</p>
       </div>
       <div id="everyRoundResult">
+        <p id ='userDecision'></p>
         <p id = 'compRound'></p>
         <p id="roundResult"></p>
         <button id="nextRound">next round</button>
@@ -63,19 +64,18 @@
     <div id="finalScores">
       <p id="userFinalScore"></p>
       <p id="compFinalScore"></p>
+      <p id="game-over">Game over!</p>
     </div>
     <div id="winnerContainer">
       <p id="winner"></p>
     </div>
     <div id="newGame">
-      <p id="game-over">Game over!</p>
       <button id="rematch">Rematch?</button>
     </div>
   </div>
 </body>
 
 <script>
-  // all of the DOMS 
   const startButton = document.getElementById('startGame');
   const gameVisuals = document.getElementById('game');
   const userScore = document.getElementById('myScore');
@@ -100,6 +100,7 @@
   const everyRoundResult = document.getElementById('everyRoundResult')
   const nextRound = document.getElementById('nextRound')
   const revealFinalResult = document.getElementById('toFinalResult')
+  const everyUserDecision = document.getElementById('userDecision')
 
 everyRoundResult.style.display = 'none'
 
@@ -109,17 +110,15 @@ everyRoundResult.style.display = 'none'
   gameVisuals.style.display = "block";
 });
 
-  //randomoised computer choice
   function getComputerChoice() {
     let choices = ['rock', 'paper', 'scissors'];
     let computerChoice = choices[Math.floor(Math.random() * choices.length)];
     return computerChoice;
   }
-  //start of all player scores and round number
   let playerScore = 0;
   let compScore = 0;
   let currentRound = 1;
-  //the logic of who wins a standard round
+
   function playRound(playerSelection, computerSelection) {
     userScore.style.display = 'block';
     computerScore.style.display = 'block';
@@ -145,30 +144,36 @@ everyRoundResult.style.display = 'none'
       roundResults.textContent = `Oh no, you lost!`;
     }
   }
-  
-  //adding event listeners to each RPC button
   rockButton.addEventListener('click', function() {
-    everyRoundResult.style.display = 'block'
+    everyRoundResult.style.display = 'flex'
+    buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
+      buttonPage.style.display = 'block'
+
     })
     allRounds('rock');
   });
   paperButton.addEventListener('click', function() {
-    everyRoundResult.style.display = 'block'
+    everyRoundResult.style.display = 'flex'
+    buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
+      buttonPage.style.display = 'block'
+
     })
     allRounds('paper');
   });
   scissorsButton.addEventListener('click', function() {
-    everyRoundResult.style.display = 'block'
+    everyRoundResult.style.display = 'flex'
+    buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
+      buttonPage.style.display = 'block'
+
     })
     allRounds('scissors');
   });
-  //the outcome text for who wins a game. This function is added to the next function
   function final() {
   gameplayContainer.style.display = 'none';
   resultsPage.style.display = 'flex';
@@ -181,8 +186,6 @@ everyRoundResult.style.display = 'none'
   } else if (playerScore === compScore) {
     theWinner.textContent = `It's a draw!`;
   }
-
-  // Display the "Game over!" message
   gameOver.style.display = 'block';
 }
   //a function for 5 games of the playRound function
@@ -192,15 +195,16 @@ everyRoundResult.style.display = 'none'
     roundNumber.textContent = `Round ${currentRound}`;
     const computerSelection = getComputerChoice();
     compRound.textContent = `Computer picks ${computerSelection}`;
+    everyUserDecision.textContent = `You picked ${playerSelection}`;
     playRound(playerSelection, computerSelection);
   } else if (currentRound === 5) {
     const computerSelection = getComputerChoice();
     compRound.textContent = `Computer picks ${computerSelection}`;
+    everyUserDecision.textContent = `You picked ${playerSelection}`;
     playRound(playerSelection, computerSelection);
-
-    everyRoundResult.style.display = 'block';
-    nextRound.style.display = 'none'
-    revealFinalResult.style.display = 'block'
+    everyRoundResult.style.display = 'flex';
+    nextRound.style.display = 'none';
+    revealFinalResult.style.display = 'block';
     revealFinalResult.addEventListener('click', function () {
       everyRoundResult.style.display = 'none';
       final();
@@ -213,7 +217,9 @@ everyRoundResult.style.display = 'none'
   }
 }
 
+
 newGame.addEventListener('click', function() {
+  buttonPage.style.display = 'block'
   revealFinalResult.style.display = 'none'
   nextRound.style.display = 'block'
   everyRoundResult.style.display = 'none'

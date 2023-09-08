@@ -124,7 +124,7 @@ h1, #startGame, .gameRules {
 
 #gameplayContainer {
     margin: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -133,12 +133,12 @@ h1, #startGame, .gameRules {
 }
 
 #game {
-    height: 100%;
+    height: 100vh;
     background-color:darkgoldenrod;
 }
 
 #buttonContainer {
-    height: 100%;
+    height: 100vh;
     background-color: darkkhaki;
 }
 
@@ -164,6 +164,21 @@ h1, #startGame, .gameRules {
 
 #winner {
     margin: 0;
+}
+
+.scores {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#everyRoundResult {
+    background-color: #4a73f0;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
 }
 
 

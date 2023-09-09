@@ -9,6 +9,7 @@
 
 body {
     margin: 0;
+    padding: 0;
     height: 100vh;
     width: 100%;
 }
@@ -133,22 +134,101 @@ h1, #startGame, .gameRules {
 }
 
 #game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Vertically opposite ends */
+    align-items: flex-start; /* Horizontally opposite ends */
     height: 100vh;
-    background-color:darkgoldenrod;
+    width: 100%;
+    background-color: white;
+}
+
+.scores {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#roundNum {
+    margin: 0;
+    background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+.squiggleBorder {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+}
+
+#roundNumber {
+    font-size: 13rem;
+    text-align: center;
+    margin: 0;
+}
+
+#weapon {
+    display: none;
+}
+
+#roundNum {
+    height: 70%;
+    width: 100%;
+}
+
+.scores {
+    height: 40%;
+    min-height: 250px;
+    width: 100%;
 }
 
 #buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
     height: 100vh;
     background-color: darkkhaki;
 }
 
-#game, #buttonContainer {
-    flex: 1;
-}
-
-#paperButton, #rockButton, #scissorsButton {
+#buttonContainer img {
     width: 100px;
     height: auto;
+    margin: 40px;
+    transform: scale(1.4) rotate(0deg);
+}
+
+#buttonContainer img:hover {
+    margin: 40px;
+    transform: scale(1.4) rotate(0deg);
+    animation: wiggle 0.5s ease-in 3 alternate;
+}
+
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg) scale(1.4);
+    }
+    50% {
+        transform: rotate(-12deg) scale(1.4);
+    }
+}
+
+
+
+
+
+#game, #buttonContainer {
+    flex: 1;
 }
 
 #result_panel {
@@ -166,13 +246,6 @@ h1, #startGame, .gameRules {
     margin: 0;
 }
 
-.scores {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
 #everyRoundResult {
     background-color: #4a73f0;
     position: absolute;
@@ -186,190 +259,27 @@ h1, #startGame, .gameRules {
     margin: 0;
 }
 
-
-/*
-
-* {
-    box-sizing: border-box;
-}
-
-#game,
-#rematch,
-#game-over {
-    display: none;
-}
-
-body {
+#decisions {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-}
-
-#introPage, .gameplayContainer {
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #ebddceff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#startGame {
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-    outline: none;   
-    text-decoration: none;
-    transform: scale(1.5);
-}
-
-.gameRules {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
-  
-  .popup-text {
-    color: black;
-    display: none;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5rem;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    padding: 40px 40px 80px 40px;
-    width: auto;
-    height:auto;
-    text-align: justify;
-    background:
-    conic-gradient(from -45deg at bottom,transparent,white 1deg 89deg,transparent 90deg) 50%/80px 100% repeat;
-}
-  
-  .gameRules:hover .popup-text {
-    display: block;
-  }  
-
-#header {
-    margin: 0 auto;
-    position: relative;
-}
-
-#row1,
-#row2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-h1, #startGame, .gameRules {
-    font-family: 'Unbounded', sans-serif;
-    margin: 0;
-    color: #4a73f0;
-    font-size: 13rem;
-}
-  .squiggle1 {
-    position: absolute;
-    bottom: 10px;
-    right: 50px;
-    transform: scale(1.7);
-  }
-
-  .squiggle2 {
-    position: absolute;
-    left: 180px;
-    bottom: 310px;
-    transform: scale(1.2);
-  }
-
-  .squiggle3 {
-    position: absolute;
-    left: 700px;
-    bottom: 260px;
-    transform: scale(1.5);
-  }
-
-  .squiggle7 {
-    position: absolute;
-    left: 500px;
-    top: 60px;
-    transform: rotate(-10deg) scale(1.3);
-  }
-
-  .squiggle5 {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    transform: rotate(0deg) scale(1.4);
-}
-
-.squiggle6 {
-    position: absolute;
-    top: 50px;
-    right: 40px;
-    transform: rotate(40deg);
-}
-
-#popupResult {
+    justify-content: space-evenly; /* Add this line */
     background-color: aqua;
+    width: 100%;
+    margin: 0;
 }
 
-  #buttonContainer,
-  .gameplayContainer {
-      flex: 1;
-  }
-
-#buttonContainer {
-    background-color: #ebddceff;
-    display: none;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-evenly;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    padding-right: 40px;
-    transition: transform 0.3s ease-in-out;
+#userDecision, #compRound {
+    margin: 0;
 }
 
-/* Style for buttons */
-
-
-
-#paperButton:hover {
-    transform: rotate(4deg);
-    animation: wiggle 0.5s linear 3 alternate;
+#roundResult {
+    width: 100%;
+    background-color: beige;
+    margin: 0;
+    text-align: center;
 }
 
-#rockButton:hover {
-    transform: rotate(4deg);
-    animation: wiggle 0.5s linear 3 alternate;
-}
-
-#scissorsButton:hover {
-    transform: rotate(4deg);
-    animation: wiggle 0.5s linear 3 alternate;
-}
-
-@keyframes wiggle {
-    0%, 100% {
-        transform: rotate(4deg);
-    }
-    50% {
-        transform: rotate(-4deg);
-    }
-}
-
-
-@media (min-width: 2000px) {
-    .buttonContainer img {
-        width: 100%;
-    }
+#nextRound, #toFinalResult {
+    width: 100%;
+    margin: 0;
 }

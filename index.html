@@ -46,17 +46,20 @@
       <div id="roundNum">
         <p id="roundNumber">Round 1</p>
         <p id="weapon">Choose your weapon:</p>
-      </div>
-      <div id="everyRoundResult">
-        <p id ='userDecision'></p>
-        <p id = 'compRound'></p>
-        <p id="roundResult"></p>
-        <button id="nextRound">next round</button>
-        <button id="toFinalResult" style="display: none;">final result?</button>
+        <img src="squiggleborder.jpg" class="squiggleBorder">
       </div>
       <div class="scores">
         <p id="myScore">You have 0 points</p>
         <p id="compScore">The computer has 0 points</p>
+      </div>
+      <div id="everyRoundResult">
+        <div id="decisions">
+          <p id ='userDecision'></p>
+          <p id = 'compRound'></p>
+        </div>
+        <p id="roundResult"></p>
+        <button id="nextRound">next round</button>
+        <button id="toFinalResult" style="display: none;">final result?</button>
       </div>
     </div>
   </div>
@@ -107,7 +110,7 @@ everyRoundResult.style.display = 'none'
   startButton.addEventListener('click', function() {
   introPage.style.display = "none";
   gameplayContainer.style.display = 'flex';
-  gameVisuals.style.display = "block";
+  gameVisuals.style.display = "flex";
 });
 
   function getComputerChoice() {
@@ -149,7 +152,7 @@ everyRoundResult.style.display = 'none'
     buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
-      buttonPage.style.display = 'block'
+      buttonPage.style.display = 'flex'
 
     })
     allRounds('rock');
@@ -159,7 +162,7 @@ everyRoundResult.style.display = 'none'
     buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
-      buttonPage.style.display = 'block'
+      buttonPage.style.display = 'flex'
 
     })
     allRounds('paper');
@@ -169,7 +172,7 @@ everyRoundResult.style.display = 'none'
     buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
-      buttonPage.style.display = 'block'
+      buttonPage.style.display = 'flex'
 
     })
     allRounds('scissors');
@@ -219,7 +222,7 @@ everyRoundResult.style.display = 'none'
 
 
 newGame.addEventListener('click', function() {
-  buttonPage.style.display = 'block'
+  buttonPage.style.display = 'flex'
   revealFinalResult.style.display = 'none'
   nextRound.style.display = 'block'
   everyRoundResult.style.display = 'none'
@@ -247,228 +250,3 @@ newGame.addEventListener('click', function() {
 </script>
 </body>
 </html> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rock, Paper, Scissors Game</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div id="buttonContainer">
-      <img id="paperButton" src="paper hand.png">
-      <img id="scissorsButton" src="scissors hand.png">
-      <img id="rockButton" src="rock hand.png">
-  </div>
-  <div class="gameplayContainer">
-    <div id="introPage">
-      <div id="header">
-        <div id="row1">
-          <div class="gameRules">?
-            <div class="popup-text">Your goal is to beat the computer in five rounds. Choose Rock, Paper, or Scissors, and the computer will make its choice. Rock beats Scissors, Scissors beats Paper, and Paper beats Rock. If both sides choose the same, it's a draw.<br><br>You earn a point for a win, and draws award a point to each player. The computer gains a point when you lose.<br><br>To win the game, have more points than the computer after five rounds. If points are equal, it's a tie. After each game, you can start fresh with scores reset.<br><br>Enjoy Rock, Paper, Scissors!</div>
-          </div>
-          <img class='squiggle6' src='squiggle6.png'>
-          <img class='squiggle7' src='squiggle7.png'>
-          <h1>ROCK</h1>
-        </div>
-        <div id="row2">
-          <img class='squiggle2' src="squiggle3.png">
-          <h1>PAPER</h1>
-          <img class='squiggle3' src="squiggle4.png">
-          <button id="startGame">→</button>
-        </div>
-        <h1>SCISSORS</h1>
-        <img class='squiggle1'src="squiggle2.png">
-        <img class="squiggle5" src="squiggle5.png">
-      </div>
-    </div>
-    <div id="game" style="display: none;">
-        <div id="popupResult">
-          <p id = 'compRound'></p>
-          <p id="roundResult"></p>
-        </div>
-        <p id="roundNumber">Round 1</p>
-        <p id="weapon">Choose your weapon:</p>
-        <div id="result_panel">
-          <div id="score">
-            <p id="myScore">You have 0 points</p>
-            <p id="compScore">The computer has 0 points</p>
-            <p id="winner"></p>
-            <p id="game-over">Game over!</p>
-          </div>
-        </div>
-        <button id="rematch">Rematch?</button>
-    </div>
-  </div>
-  <script>
-    // all of the DOMS 
-    const startButton = document.getElementById('startGame');
-    const gameVisuals = document.getElementById('game');
-    const userScore = document.getElementById('myScore');
-    const computerScore = document.getElementById('compScore');
-    const roundResults = document.getElementById('roundResult');
-    const theWinner = document.getElementById('winner');
-    const newGame = document.getElementById('rematch');
-    const gameOver = document.getElementById('game-over');
-    const rockButton = document.getElementById('rockButton');
-    const paperButton = document.getElementById('paperButton');
-    const scissorsButton = document.getElementById('scissorsButton');
-    const roundNumber = document.getElementById('roundNumber');
-    const buttonPage = document.getElementById('buttonContainer');
-    const chooseWeapon = document.getElementById('weapon')
-    const compRound = document.getElementById('compRound')
-    
-
-    startButton.addEventListener('click', function() {
-      buttonPage.style.display = 'flex';
-      introPage.style.display = "none"
-      gameVisuals.style.display = "block";
-      startButton.style.display = "none";
-      rockButton.classList.remove("no-hover-animation");
-    paperButton.classList.remove("no-hover-animation");
-    scissorsButton.classList.remove("no-hover-animation");
-    });
-
-    //randomoised computer choice
-    function getComputerChoice() {
-      let choices = ['rock', 'paper', 'scissors'];
-      let computerChoice = choices[Math.floor(Math.random() * choices.length)];
-      return computerChoice;
-    }
-    //start of all player scores and round number
-    let playerScore = 0;
-    let compScore = 0;
-    let currentRound = 1;
-    //the logic of who wins a standard round
-    function playRound(playerSelection, computerSelection) {
-      if (
-        (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper')
-      ) {
-        playerScore++;
-        userScore.textContent = `You have ${playerScore} points`;
-        computerScore.textContent = `the computer has ${compScore} points.`;
-        roundResults.textContent = `Wow, you won!`;
-      } else if (playerSelection === computerSelection) {
-        playerScore++;
-        compScore++;
-        userScore.textContent = `You have ${playerScore} points`;
-        computerScore.textContent = `the computer has ${compScore} points.`;
-        roundResults.textContent = `It's a draw!`;
-      } else {
-        compScore++;
-        userScore.textContent = `You have ${playerScore} points`;
-        computerScore.textContent = `the computer has ${compScore} points.`;
-        roundResults.textContent = `Oh no, you lost!`;
-      }
-    }
-    //adding event listeners to each RPC button
-    rockButton.addEventListener('click', function() {
-      allRounds('rock');
-    });
-    paperButton.addEventListener('click', function() {
-      allRounds('paper');
-    });
-    scissorsButton.addEventListener('click', function() {
-      allRounds('scissors');
-    });
-    //the outcome text for who wins a game. This function is added to the next function
-    function final() {
-      chooseWeapon.style.display = 'none'
-      buttonPage.style.display = 'none'
-      roundResults.style.display = 'none'
-      if (playerScore > compScore) {
-        theWinner.textContent = `You win the game!`;
-      } else if (compScore > playerScore) {
-        theWinner.textContent = `The computer wins the game!`;
-      } else if (playerScore === compScore) {
-        theWinner.textContent = `It's a draw!`;
-      }
-      if (currentRound === 5) {
-        document.querySelector('.gameplayContainer').style.background = '#ebddceff';
-      }
-    }
-    //a function for 5 games of the playRound function
-    function allRounds(playerSelection) {
-  if (currentRound <= 4) {
-    currentRound++;
-    roundNumber.textContent = `Round ${currentRound}`;
-    const computerSelection = getComputerChoice(); // Get the computer's choice
-    compRound.textContent = `Computer picks ${computerSelection}`; // Display the computer's choice
-    playRound(playerSelection, computerSelection); // Call playRound with both choices
-  } else if (currentRound === 5) { // Once it reaches the 5th round...
-    
-    const computerSelection = getComputerChoice(); // Get the computer's choice
-    compRound.textContent = `Computer picks ${computerSelection}`; // Display the computer's choice
-    playRound(playerSelection, computerSelection); // Call playRound with both choices
-    roundNumber.style.display = 'none';
-    rockButton.style.display = 'none';
-    paperButton.style.display = 'none';
-    scissorsButton.style.display = 'none';
-    gameOver.style.display = 'block';
-    final(); //... the final function appears with the scores.
-    newGame.style.display = 'block';
-  }
-}
-
-newGame.addEventListener('click', function() {
-  document.querySelector('.gameplayContainer').style.background = 'white';
-  buttonPage.style.display = 'flex';
-  chooseWeapon.style.display = 'block';
-  playerScore = 0;
-  compScore = 0;
-  currentRound = 1;
-  newGame.style.display = 'none';
-  roundNumber.textContent = 'Round 1';
-  userScore.textContent = 'You have 0 points';
-  computerScore.textContent = 'The computer has 0 points';
-  
-  // Clear the computer's last choice and reset round results
-  compRound.textContent = ''; // Hide the computer's last choice
-  roundResults.textContent = '';
-  roundResults.style.display = 'block';
-
-  theWinner.textContent = '';
-  gameVisuals.style.display = "block";
-  roundNumber.style.display = 'block';
-  gameOver.style.display = 'none';
-  rockButton.style.display = 'inline';
-  paperButton.style.display = 'inline';
-  scissorsButton.style.display = 'inline';
-});
-
-
-  </script>
-</body>
-</html> -->

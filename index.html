@@ -11,6 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&display=swap" rel="stylesheet">   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="introPage">
@@ -44,13 +50,15 @@
     </div>
     <div id="game">
       <div id="roundNum">
-        <p id="roundNumber">Round 1</p>
+        <img src="circleRound.png" id="loop">
+        <p id="roundNumber">ROUND 1</p>
         <p id="weapon">Choose your weapon:</p>
-        <img src="squiggleborder.jpg" class="squiggleBorder">
+        <img src="newSquiggleBorder.png" class="squiggleBorder">
       </div>
       <div class="scores">
-        <p id="myScore">You have 0 points</p>
-        <p id="compScore">The computer has 0 points</p>
+        <p></p>
+        <p id="myScore">USER:<br><span class="bold">0</span></p>
+        <p id="compScore">COMPUTER:<br><span class="bold">0</span></p>
       </div>
       <div id="everyRoundResult">
         <div id="decisions">
@@ -58,8 +66,11 @@
           <p id = 'compRound'></p>
         </div>
         <p id="roundResult"></p>
-        <button id="nextRound">next round</button>
-        <button id="toFinalResult" style="display: none;">final result?</button>
+        <div id="bottomContainer">
+          <img id='whiteCircleBorder' src="circleRoundwhite.png">
+          <button id="nextRound">next round</button>
+          <button id="toFinalResult" style="display: none;">final result?</button>
+        </div>
       </div>
     </div>
   </div>
@@ -105,6 +116,7 @@
   const revealFinalResult = document.getElementById('toFinalResult')
   const everyUserDecision = document.getElementById('userDecision')
 
+
 everyRoundResult.style.display = 'none'
 
   startButton.addEventListener('click', function() {
@@ -123,40 +135,41 @@ everyRoundResult.style.display = 'none'
   let currentRound = 1;
 
   function playRound(playerSelection, computerSelection) {
-    userScore.style.display = 'block';
-    computerScore.style.display = 'block';
-    if (
-      (playerSelection === 'rock' && computerSelection === 'scissors') ||
-      (playerSelection === 'paper' && computerSelection === 'rock') ||
-      (playerSelection === 'scissors' && computerSelection === 'paper')
-    ) {
-      playerScore++;
-      userScore.textContent = `You have ${playerScore} points`;
-      computerScore.textContent = `the computer has ${compScore} points.`;
-      roundResults.textContent = `Wow, you won!`;
-    } else if (playerSelection === computerSelection) {
-      playerScore++;
-      compScore++;
-      userScore.textContent = `You have ${playerScore} points`;
-      computerScore.textContent = `the computer has ${compScore} points.`;
-      roundResults.textContent = `It's a draw!`;
-    } else {
-      compScore++;
-      userScore.textContent = `You have ${playerScore} points`;
-      computerScore.textContent = `the computer has ${compScore} points.`;
-      roundResults.textContent = `Oh no, you lost!`;
-    }
-  }
-  rockButton.addEventListener('click', function() {
-    everyRoundResult.style.display = 'flex'
-    buttonPage.style.display = 'none'
-    nextRound.addEventListener('click', function() {
-      everyRoundResult.style.display = 'none'
-      buttonPage.style.display = 'flex'
+  userScore.style.display = 'block';
+  computerScore.style.display = 'block';
 
-    })
-    allRounds('rock');
+  if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'paper' && computerSelection === 'rock') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper')
+  ) {
+    playerScore++;
+    userScore.innerHTML = `USER:<br><span class="bold">${playerScore}</span>`;
+    computerScore.innerHTML = `COMPUTER:<br><span class="bold">${compScore}</span>`;
+    roundResults.textContent = `YOU WON!`;
+  } else if (playerSelection === computerSelection) {
+    playerScore++;
+    compScore++;
+    userScore.innerHTML = `USER:<br><span class="bold">${playerScore}</span>`;
+    computerScore.innerHTML = `COMPUTER:<br><span class="bold">${compScore}</span>`;
+    roundResults.textContent = `IT'S A DRAW!`;
+  } else {
+    compScore++;
+    userScore.innerHTML = `USER:<br><span class="bold">${playerScore}</span>`;
+    computerScore.innerHTML = `COMPUTER:<br><span class="bold">${compScore}</span>`;
+    roundResults.textContent = `YOU LOST!`;
+  }
+}
+rockButton.addEventListener('click', function() {
+  everyRoundResult.style.display = 'flex'
+  buttonPage.style.display = 'none'
+  nextRound.addEventListener('click', function() {
+    everyRoundResult.style.display = 'none';
+    buttonPage.style.display = 'flex';
   });
+
+  allRounds('rock');
+});
   paperButton.addEventListener('click', function() {
     everyRoundResult.style.display = 'flex'
     buttonPage.style.display = 'none'
@@ -195,15 +208,15 @@ everyRoundResult.style.display = 'none'
   function allRounds(playerSelection) {
   if (currentRound <= 4) {
     currentRound++;
-    roundNumber.textContent = `Round ${currentRound}`;
+    roundNumber.textContent = `ROUND ${currentRound}`;
     const computerSelection = getComputerChoice();
-    compRound.textContent = `Computer picks ${computerSelection}`;
-    everyUserDecision.textContent = `You picked ${playerSelection}`;
+    compRound.innerHTML = `COMPUTER PICKED<br>${computerSelection}`;
+    everyUserDecision.innerHTML = `YOU PICKED<br>${playerSelection}`;
     playRound(playerSelection, computerSelection);
   } else if (currentRound === 5) {
     const computerSelection = getComputerChoice();
-    compRound.textContent = `Computer picks ${computerSelection}`;
-    everyUserDecision.textContent = `You picked ${playerSelection}`;
+    compRound.innerHTML = `COMPUTER PICKED<br>${computerSelection}`;
+    everyUserDecision.innerHTML = `YOU PICKED<br>${playerSelection}`;
     playRound(playerSelection, computerSelection);
     everyRoundResult.style.display = 'flex';
     nextRound.style.display = 'none';
@@ -214,7 +227,6 @@ everyRoundResult.style.display = 'none'
       resultsPage.style.display = 'flex';
       newGame.style.display = 'block';
     });
-
     // Reset currentRound to prevent further clicks
     currentRound++;
   }
@@ -222,18 +234,18 @@ everyRoundResult.style.display = 'none'
 
 
 newGame.addEventListener('click', function() {
-  buttonPage.style.display = 'flex'
-  revealFinalResult.style.display = 'none'
-  nextRound.style.display = 'block'
-  everyRoundResult.style.display = 'none'
+  buttonPage.style.display = 'flex';
+  revealFinalResult.style.display = 'none';
+  nextRound.style.display = 'block';
+  everyRoundResult.style.display = 'none';
   gameplayContainer.style.display = 'flex';
   resultsPage.style.display = 'none';
   playerScore = 0;
   compScore = 0;
   currentRound = 1;
-  roundNumber.textContent = 'Round 1';
-  userScore.textContent = 'You have 0 points';
-  computerScore.textContent = 'The computer has 0 points';
+  roundNumber.textContent = 'ROUND 1';
+  userScore.innerHTML = 'USER: <span class="bold">0</span>';
+  computerScore.innerHTML = 'COMPUTER: <span class="bold">0</span>';
   compRound.textContent = '';
   roundResults.textContent = '';
   roundResults.style.display = 'block';

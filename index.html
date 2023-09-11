@@ -17,6 +17,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="introPage">
@@ -52,7 +55,7 @@
       <div id="roundNum">
         <img src="circleRound.png" id="loop">
         <p id="roundNumber">ROUND 1</p>
-        <p id="weapon">Choose your weapon:</p>
+        <p id="weapon">CHOOSE YOUR WEAPON</p>
         <img src="newSquiggleBorder.png" class="squiggleBorder">
       </div>
       <div class="scores">
@@ -68,23 +71,28 @@
         <p id="roundResult"></p>
         <div id="bottomContainer">
           <img id='whiteCircleBorder' src="circleRoundwhite.png">
-          <button id="nextRound">next round</button>
-          <button id="toFinalResult" style="display: none;">final result?</button>
+          <button id="nextRound">next<br>round</button>
+          <button id="toFinalResult" style="display: none;">final<br>result?</button>
         </div>
       </div>
     </div>
   </div>
   <div id="result_panel" style="display: none;">
     <div id="finalScores">
-      <p id="userFinalScore"></p>
-      <p id="compFinalScore"></p>
-      <p id="game-over">Game over!</p>
+      <div id="finalResultsBox">
+        <p id="userFinalScore"></p>
+        <p id="compFinalScore"></p>
+      </div>
+      <p id="game-over">GAME OVER</p>
     </div>
     <div id="winnerContainer">
       <p id="winner"></p>
+      <img src="squiggle4.png" id="lastUnderline">
     </div>
     <div id="newGame">
-      <button id="rematch">Rematch?</button>
+      <div id="rematch2">
+        <img src="doubleCircle Arrow.png" id="rematch">
+      </div>
     </div>
   </div>
 </body>
@@ -115,6 +123,7 @@
   const nextRound = document.getElementById('nextRound')
   const revealFinalResult = document.getElementById('toFinalResult')
   const everyUserDecision = document.getElementById('userDecision')
+  const nextRoundLoop = document.getElementById('whiteCircleBorder')
 
 
 everyRoundResult.style.display = 'none'
@@ -123,7 +132,10 @@ everyRoundResult.style.display = 'none'
   introPage.style.display = "none";
   gameplayContainer.style.display = 'flex';
   gameVisuals.style.display = "flex";
+
 });
+
+
 
   function getComputerChoice() {
     let choices = ['rock', 'paper', 'scissors'];
@@ -193,8 +205,8 @@ rockButton.addEventListener('click', function() {
   function final() {
   gameplayContainer.style.display = 'none';
   resultsPage.style.display = 'flex';
-  userFinalScore.textContent = `You have ${playerScore}`;
-  compFinalScore.textContent = `Computer has ${compScore}`;
+  userFinalScore.innerHTML = `YOU HAVE<br>${playerScore} points`;
+  compFinalScore.innerHTML= `COMPUTER HAS<br>${compScore} points`;
   if (playerScore > compScore) {
     theWinner.textContent = `You win the game!`;
   } else if (compScore > playerScore) {
@@ -221,6 +233,8 @@ rockButton.addEventListener('click', function() {
     everyRoundResult.style.display = 'flex';
     nextRound.style.display = 'none';
     revealFinalResult.style.display = 'block';
+    nextRoundLoop.style.width = '160px';
+    nextRoundLoop.style.height = '90px';
     revealFinalResult.addEventListener('click', function () {
       everyRoundResult.style.display = 'none';
       final();

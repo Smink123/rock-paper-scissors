@@ -52,16 +52,11 @@
       <img id="scissorsButton" src="scissors.png">
     </div>
     <div id="game">
-      <div id="roundNum">
-        <img src="circleRound.png" id="loop">
-        <p id="roundNumber">ROUND 1</p>
-        <p id="weapon">CHOOSE YOUR WEAPON</p>
-        <img src="newSquiggleBorder.png" class="squiggleBorder">
-      </div>
+      <p id="roundNumber">1</p>
       <div class="scores">
-        <p></p>
-        <p id="myScore">USER:<br><span class="bold">0</span></p>
-        <p id="compScore">COMPUTER:<br><span class="bold">0</span></p>
+        <p id="myScore">USER: 0</span></p>
+        <img src="newSquiggleBorder.png" id="scoresBorder">
+        <p id="compScore">COMPUTER: 0</span></p>
       </div>
       <div id="everyRoundResult">
         <div id="decisions">
@@ -71,28 +66,46 @@
         <p id="roundResult"></p>
         <div id="bottomContainer">
           <img id='whiteCircleBorder' src="circleRoundwhite.png">
-          <button id="nextRound">next<br>round</button>
-          <button id="toFinalResult" style="display: none;">final<br>result?</button>
+          <button id="nextRound">NEXT<br>ROUND</button>
+          <button id="toFinalResult" style="display: none;">FINAL<br>RESULT?</button>
         </div>
       </div>
     </div>
   </div>
   <div id="result_panel" style="display: none;">
-    <div id="finalScores">
-      <div id="finalResultsBox">
-        <p id="userFinalScore"></p>
-        <p id="compFinalScore"></p>
+    <div id="itemsContainer">
+      <div id="leftContainerLast">
+        <div id="gameContainer">
+          <p id="game-over1">GAME</p>
+        </div>
+        <div id="finalScores">
+          <div id="finalResultsBox">
+            <p id="userFinalScore"></p>
+            <p id="compFinalScore"></p>
+          </div>
+        </div>
       </div>
-      <p id="game-over">GAME OVER</p>
-    </div>
-    <div id="winnerContainer">
-      <p id="winner"></p>
-      <img src="squiggle4.png" id="lastUnderline">
-    </div>
-    <div id="newGame">
-      <div id="rematch2">
-        <img src="doubleCircle Arrow.png" id="rematch">
+      <div id="rightContainerLast">
+        <div id="upperRight">
+          <p id="winner"></p>
+          <div id="newGame">
+            <div id="rematch2">
+              <img src="doubleCircle Arrow.png" id="rematch">
+            </div>
+          </div>
+        </div>
+        <div id="overContainer">
+          <p id="game-over2">OVER</p>
+        </div>
       </div>
+      <img src="squiggle1.png" id="last1">
+      <img src="squiggle3.png" id="last2">
+      <img src="squiggle6.png" id="last3">
+      <img src="squiggle10.png" id="last4">
+      <img src="squiggle9.png" id="last5">
+      <img src="squiggle11.png" id="last6">
+      <img src="squiggle8.png" id="last7">
+      <img src="squiggle12.png" id="last8">
     </div>
   </div>
 </body>
@@ -105,7 +118,8 @@
   const roundResults = document.getElementById('roundResult');
   const theWinner = document.getElementById('winner');
   const newGame = document.getElementById('rematch');
-  const gameOver = document.getElementById('game-over');
+  const gameOver1 = document.getElementById('game-over1');
+  const gameOver2 = document.getElementById('game-over2');
   const rockButton = document.getElementById('rockButton');
   const paperButton = document.getElementById('paperButton');
   const scissorsButton = document.getElementById('scissorsButton');
@@ -156,19 +170,19 @@ everyRoundResult.style.display = 'none'
     (playerSelection === 'scissors' && computerSelection === 'paper')
   ) {
     playerScore++;
-    userScore.innerHTML = `USER:<br><span class="bold">${playerScore}</span>`;
-    computerScore.innerHTML = `COMPUTER:<br><span class="bold">${compScore}</span>`;
+    userScore.textContent = `USER: ${playerScore}`;
+    computerScore.textContent = `COMPUTER: ${compScore}`;
     roundResults.textContent = `YOU WON!`;
   } else if (playerSelection === computerSelection) {
     playerScore++;
     compScore++;
-    userScore.innerHTML = `USER:<br><span class="bold">${playerScore}</span>`;
-    computerScore.innerHTML = `COMPUTER:<br><span class="bold">${compScore}</span>`;
+    userScore.textContent = `USER: ${playerScore}`;
+    computerScore.textContent = `COMPUTER: ${compScore}`;
     roundResults.textContent = `IT'S A DRAW!`;
   } else {
     compScore++;
-    userScore.innerHTML = `USER:<br><span class="bold">${playerScore}</span>`;
-    computerScore.innerHTML = `COMPUTER:<br><span class="bold">${compScore}</span>`;
+    userScore.textContent = `USER: ${playerScore}`;
+    computerScore.textContent = `COMPUTER: ${compScore}`;
     roundResults.textContent = `YOU LOST!`;
   }
 }
@@ -177,6 +191,7 @@ rockButton.addEventListener('click', function() {
   buttonPage.style.display = 'none'
   nextRound.addEventListener('click', function() {
     everyRoundResult.style.display = 'none';
+    roundNumber.style.display = 'block'
     buttonPage.style.display = 'flex';
   });
 
@@ -187,6 +202,7 @@ rockButton.addEventListener('click', function() {
     buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
+      roundNumber.style.display = 'block'
       buttonPage.style.display = 'flex'
 
     })
@@ -197,6 +213,7 @@ rockButton.addEventListener('click', function() {
     buttonPage.style.display = 'none'
     nextRound.addEventListener('click', function() {
       everyRoundResult.style.display = 'none'
+      roundNumber.style.display = 'block'
       buttonPage.style.display = 'flex'
 
     })
@@ -205,25 +222,26 @@ rockButton.addEventListener('click', function() {
   function final() {
   gameplayContainer.style.display = 'none';
   resultsPage.style.display = 'flex';
-  userFinalScore.innerHTML = `YOU HAVE<br>${playerScore} points`;
-  compFinalScore.innerHTML= `COMPUTER HAS<br>${compScore} points`;
+  userFinalScore.innerHTML = `YOU HAVE<br>${playerScore} POINTS`;
+  compFinalScore.innerHTML= `COMPUTER HAS<br>${compScore} POINTS`;
   if (playerScore > compScore) {
-    theWinner.textContent = `You win the game!`;
+    theWinner.innerHTML = `YOU WIN<br>THE GAME`;
   } else if (compScore > playerScore) {
-    theWinner.textContent = `The computer wins the game!`;
+    theWinner.innerHTML = `COMPUTER WINS<br>THE GAME`;
   } else if (playerScore === compScore) {
-    theWinner.textContent = `It's a draw!`;
+    theWinner.innerHTML = `IT'S A<br>DRAW`;
   }
-  gameOver.style.display = 'block';
+  gameOver1.style.display = 'block';
+  gameOver2.style.display = 'block';
 }
   //a function for 5 games of the playRound function
   function allRounds(playerSelection) {
   if (currentRound <= 4) {
     currentRound++;
-    roundNumber.textContent = `ROUND ${currentRound}`;
+    roundNumber.textContent = `${currentRound}`;
     const computerSelection = getComputerChoice();
-    compRound.innerHTML = `COMPUTER PICKED<br>${computerSelection}`;
-    everyUserDecision.innerHTML = `YOU PICKED<br>${playerSelection}`;
+    compRound.innerHTML = `COMPUTER<br>PICKED<br>${computerSelection}`;
+    everyUserDecision.innerHTML = `YOU<br>PICKED<br>${playerSelection}`;
     playRound(playerSelection, computerSelection);
   } else if (currentRound === 5) {
     const computerSelection = getComputerChoice();
@@ -233,8 +251,8 @@ rockButton.addEventListener('click', function() {
     everyRoundResult.style.display = 'flex';
     nextRound.style.display = 'none';
     revealFinalResult.style.display = 'block';
-    nextRoundLoop.style.width = '160px';
-    nextRoundLoop.style.height = '90px';
+    nextRoundLoop.style.width = '90px';
+    nextRoundLoop.style.height = '50px';
     revealFinalResult.addEventListener('click', function () {
       everyRoundResult.style.display = 'none';
       final();
@@ -251,15 +269,16 @@ newGame.addEventListener('click', function() {
   buttonPage.style.display = 'flex';
   revealFinalResult.style.display = 'none';
   nextRound.style.display = 'block';
+  nextRoundLoop.style.width = '70px';
   everyRoundResult.style.display = 'none';
   gameplayContainer.style.display = 'flex';
   resultsPage.style.display = 'none';
   playerScore = 0;
   compScore = 0;
   currentRound = 1;
-  roundNumber.textContent = 'ROUND 1';
-  userScore.innerHTML = 'USER: <span class="bold">0</span>';
-  computerScore.innerHTML = 'COMPUTER: <span class="bold">0</span>';
+  roundNumber.textContent = '1';
+  userScore.textContent = `USER: ${playerScore}`;
+  computerScore.innerHTML = `COMPUTER: ${compScore}`;
   compRound.textContent = '';
   roundResults.textContent = '';
   roundResults.style.display = 'block';
